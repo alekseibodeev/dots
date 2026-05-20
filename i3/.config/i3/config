@@ -150,6 +150,7 @@ bindsym $mod+o mode "launcher"
 mode "launcher" {
     bindsym w exec --no-startup-id chromium; mode "default"
     bindsym f exec --no-startup-id thunar; mode "default"
+    bindsym i exec --no-startup-id idea; mode "default"
 
     bindsym Escape mode "default"
     bindsym Return mode "default"
