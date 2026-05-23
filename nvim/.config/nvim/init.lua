@@ -131,13 +131,3 @@ vim.keymap.set({ 'n', 'v', 'x', }, '<leader>lf', vim.lsp.buf.format)
 
 require('mini.completion').setup()
 require('gitsigns').setup()
-
--- DIAGNOSTIC
---
--- See `:h vim.diagnostic`
-
-vim.diagnostic.config({
-    virtual_lines = {
-        current_line = true,
-    },
-})
