@@ -44,6 +44,10 @@ vim.o.list = true       -- Show <tab> and trailing spaces.
 -- instead raise a dialog asking if you wish to save the current file(s). See `:h 'confirm'`
 vim.o.confirm = true
 
+-- Enable spell check
+vim.o.spell = true
+vim.o.spelllang = 'en_us'
+
 -- KEYMAPS
 --
 -- See `:h vim.keymap.set()`, `:h mapping`, `:h keycodes`
