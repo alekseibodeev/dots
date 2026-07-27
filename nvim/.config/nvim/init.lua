@@ -82,6 +82,19 @@ vim.api.nvim_create_user_command('GitBlameLine', function()
         :wait().stdout)
 end, { desc = 'Print the git blame for the current line', })
 
+-- Create a command `:SpellCheckToggle` that turn on and off the spell checking
+vim.api.nvim_create_user_command('SpellCheckToggle', function()
+    local is_spell_on = vim.o.spell
+    if is_spell_on then
+        vim.o.spell = false
+    else
+        vim.o.spell = true
+    end
+end, { desc = 'Toggle spell checking for the current session', })
+
+vim.keymap.set({ 'n' }, '<leader>sc', ':SpellCheckToggle<cr>')
+
+
 -- PLUGINS
 --
 -- See `:h :packadd`, `:h vim.pack`
