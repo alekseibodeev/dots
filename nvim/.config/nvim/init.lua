@@ -45,7 +45,7 @@ vim.o.list = true       -- Show <tab> and trailing spaces.
 vim.o.confirm = true
 
 -- Enable spell check
-vim.o.spell = true
+vim.o.spell = false
 vim.o.spelllang = 'en_us'
 
 -- KEYMAPS
