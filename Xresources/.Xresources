@@ -17,6 +17,23 @@
 
 Xft.dpi: 144
 
+*basex0:       base00
+*basex1:       base01
+*basex2:       base02
+*basex3:       base03
+*basex4:       base04
+*basex5:       base05
+*basex6:       base06
+*basex7:       base07
+*basex8:       base08
+*basex9:       base09
+*basexa:       base0A
+*basexb:       base0B
+*basexc:       base0C
+*basexd:       base0D
+*basexe:       base0E
+*basexf:       base0F
+
 *background:   base00
 *foreground:   base05
 *text:         base00

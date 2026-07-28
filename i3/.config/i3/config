@@ -156,22 +156,23 @@ mode "launcher" {
     bindsym Return mode "default"
 }
 
-set $base00 #103c48
-set $base01 #184956
-set $base02 #2d5b69
-set $base03 #72898f
-set $base04 #72898f
-set $base05 #adbcbc
-set $base06 #cad8d9
-set $base07 #cad8d9
-set $base08 #fa5750
-set $base09 #ed8649
-set $base0A #dbb32d
-set $base0B #75b938
-set $base0C #41c7b9
-set $base0D #4695f7
-set $base0E #af88eb
-set $base0F #f275be
+# Load color palette from .Xresources
+set_from_resource $base00 i3wm.basex0 #000000
+set_from_resource $base01 i3wm.basex1 #800000
+set_from_resource $base02 i3wm.basex2 #008000
+set_from_resource $base03 i3wm.basex3 #808000
+set_from_resource $base04 i3wm.basex4 #000080
+set_from_resource $base05 i3wm.basex5 #800080
+set_from_resource $base06 i3wm.basex6 #008080
+set_from_resource $base07 i3wm.basex7 #c0c0c0
+set_from_resource $base08 i3wm.basex8 #808080
+set_from_resource $base09 i3wm.basex9 #ff0000
+set_from_resource $base0A i3wm.basexa #00ff00
+set_from_resource $base0B i3wm.basexb #ffff00
+set_from_resource $base0C i3wm.basexc #0000ff
+set_from_resource $base0D i3wm.basexd #ff00ff
+set_from_resource $base0E i3wm.basexe #00ffff
+set_from_resource $base0F i3wm.basexf #ffffff
 
 client.focused          $base05 $base0D $base00 $base0D $base0C
 client.focused_inactive $base01 $base01 $base05 $base03 $base01
