@@ -92,7 +92,7 @@ vim.api.nvim_create_user_command('SpellCheckToggle', function()
     end
 end, { desc = 'Toggle spell checking for the current session', })
 
-vim.keymap.set({ 'n' }, '<leader>sc', ':SpellCheckToggle<cr>')
+vim.keymap.set({ 'n', }, '<leader>sc', ':SpellCheckToggle<cr>')
 
 
 -- PLUGINS
@@ -121,7 +121,8 @@ vim.pack.add({
 
 -- Apply colorscheme based on global system theme
 local function set_colorscheme()
-    local success, content = pcall(vim.fn.readblob, vim.fs.normalize('~/.current_theme'))
+    local success, content = pcall(vim.fn.readblob,
+        vim.fs.normalize('~/.current_theme'))
     if success and vim.trim(content) == 'light' then
         vim.cmd('colorscheme base16-selenized-light')
     else
