@@ -119,7 +119,17 @@ vim.pack.add({
     { src = 'https://github.com/lewis6991/gitsigns.nvim', },
 })
 
-vim.cmd('colorscheme base16-selenized-dark')
+-- Apply colorscheme based on global system theme
+local function set_colorscheme()
+    local success, content = pcall(vim.fn.readblob, vim.fs.normalize('~/.current_theme'))
+    if success and vim.trim(content) == 'light' then
+        vim.cmd('colorscheme base16-selenized-light')
+    else
+        vim.cmd('colorscheme base16-selenized-dark')
+    end
+end
+
+set_colorscheme()
 
 require('oil').setup()
 vim.keymap.set('n', '-', '<cmd>Oil<cr>')
