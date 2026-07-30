@@ -5,6 +5,7 @@ declare -A resources
 CURRENT_THEME_FILE="$HOME/.current_theme"
 XRESOURCES_DIR="$HOME/.Xresources.d"
 ALACRITTY_DIR="$HOME/.config/alacritty"
+NVIM_TEMP_DIR="/tmp/nvim"
 
 current_theme=$(cat "$CURRENT_THEME_FILE" 2> /dev/null)
 
@@ -80,3 +81,7 @@ _EOF_
 
 touch "$ALACRITTY_DIR/alacritty.toml"
 i3-msg -q restart
+
+for socket in "$NVIM_TEMP_DIR"/*; do
+    nvim --server "$socket" --remote-send ":UpdateColorScheme<cr>"
+done

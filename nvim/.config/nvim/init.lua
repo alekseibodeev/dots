@@ -70,6 +70,41 @@ vim.api.nvim_create_autocmd('TextYankPost', {
     end,
 })
 
+-- Sync all neovim instances with system colorscheme
+local function create_socket()
+    local pid = vim.fn.getpid()
+    local socket_name = '/tmp/nvim/nvim' .. pid .. '.sock'
+    vim.fn.mkdir('/tmp/nvim', 'p')
+    vim.fn.serverstart(socket_name)
+end
+
+local function update_colorscheme()
+    local success, content = pcall(vim.fn.readblob,
+        vim.fs.normalize('~/.current_theme'))
+    if success and vim.trim(content) == 'light' then
+        vim.cmd('colorscheme base16-selenized-light')
+    else
+        vim.cmd('colorscheme base16-selenized-dark')
+    end
+end
+
+vim.api.nvim_create_augroup('CustomStartup', {})
+
+vim.api.nvim_create_autocmd('VimEnter', {
+    desc = 'Create a socket for every nvim insance',
+    group = 'CustomStartup',
+    once = true,
+    callback = create_socket,
+})
+
+vim.api.nvim_create_autocmd('UIEnter', {
+    desc = 'Set colorscheme on startup',
+    group = 'CustomStartup',
+    once = true,
+    callback = update_colorscheme,
+})
+
+
 -- USER COMMANDS: DEFINE CUSTOM COMMANDS
 --
 -- See `:h nvim_create_user_command()` and `:h user-commands`
@@ -93,6 +128,11 @@ vim.api.nvim_create_user_command('SpellCheckToggle', function()
 end, { desc = 'Toggle spell checking for the current session', })
 
 vim.keymap.set({ 'n', }, '<leader>sc', ':SpellCheckToggle<cr>')
+
+-- Create a command `:UpdateColorScheme` that apply current system colorscheme
+vim.api.nvim_create_user_command('UpdateColorScheme',
+    update_colorscheme,
+    { desc = 'Update the current colorscheme', })
 
 
 -- PLUGINS
@@ -118,19 +158,6 @@ vim.pack.add({
     -- Git integration
     { src = 'https://github.com/lewis6991/gitsigns.nvim', },
 })
-
--- Apply colorscheme based on global system theme
-local function set_colorscheme()
-    local success, content = pcall(vim.fn.readblob,
-        vim.fs.normalize('~/.current_theme'))
-    if success and vim.trim(content) == 'light' then
-        vim.cmd('colorscheme base16-selenized-light')
-    else
-        vim.cmd('colorscheme base16-selenized-dark')
-    end
-end
-
-set_colorscheme()
 
 require('oil').setup()
 vim.keymap.set('n', '-', '<cmd>Oil<cr>')
