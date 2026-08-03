@@ -1,2 +1,3 @@
 Xresources/.Xresources.d/colors
 alacritty/.config/alacritty/colors.toml
+rofi/.config/rofi/colors.rasi
