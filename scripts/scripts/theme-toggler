@@ -5,6 +5,7 @@ declare -A resources
 CURRENT_THEME_FILE="$HOME/.current_theme"
 XRESOURCES_DIR="$HOME/.Xresources.d"
 ALACRITTY_DIR="$HOME/.config/alacritty"
+ROFI_DIR="$HOME/.config/rofi"
 NVIM_TEMP_DIR="/tmp/nvim"
 
 current_theme=$(cat "$CURRENT_THEME_FILE" 2> /dev/null)
@@ -77,6 +78,18 @@ color = "0x${resources["*color20"]}"
 [[colors.indexed_colors]]
 index = 21
 color = "0x${resources["*color21"]}"
+_EOF_
+
+cat << _EOF_ > "$ROFI_DIR/colors.rasi"
+* {
+    red: #${resources["*color1"]};
+    blue: #${resources["*color4"]};
+    lightfg: #${resources["*color15"]};
+    lightbg: #${resources["*color18"]};
+    foreground: #${resources["*color7"]};
+    background: #${resources["*color0"]};
+    background-color: #${resources["*color0"]};
+}
 _EOF_
 
 touch "$ALACRITTY_DIR/alacritty.toml"
