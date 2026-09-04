@@ -1,5 +1,7 @@
 #!/bin/bash
 
+shopt -s nullglob
+
 declare -A resources
 
 CURRENT_THEME_FILE="$HOME/.current_theme"
@@ -95,6 +97,6 @@ _EOF_
 touch "$ALACRITTY_DIR/alacritty.toml"
 i3-msg -q restart
 
-for socket in "$NVIM_TEMP_DIR"/*; do
+for socket in "$NVIM_TEMP_DIR"/*.sock; do
     nvim --server "$socket" --remote-send ":UpdateColorScheme<cr>"
 done
