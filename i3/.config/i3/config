@@ -149,7 +149,7 @@ bindsym $mod+r mode "resize"
 bindsym $mod+o mode "launcher"
 
 mode "launcher" {
-    bindsym w exec --no-startup-id google-chrome-stable; mode "default"
+    bindsym w exec --no-startup-id google-chrome-stable --profile-directory="Default"; mode "default"
     bindsym f exec --no-startup-id thunar; mode "default"
     bindsym i exec --no-startup-id idea; mode "default"
 
