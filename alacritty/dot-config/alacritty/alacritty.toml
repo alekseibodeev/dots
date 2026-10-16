@@ -2,4 +2,8 @@
 import = ["~/.config/alacritty/colors.toml"]
 
 [font]
-size = 13.00
+size = 16.00
+
+[font.normal]
+family = "Terminess Nerd Font"
+style = "Bold"
