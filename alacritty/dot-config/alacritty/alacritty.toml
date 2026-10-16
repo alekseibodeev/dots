@@ -7,3 +7,6 @@ size = 16.00
 [font.normal]
 family = "Terminess Nerd Font"
 style = "Bold"
+
+[font.italic]
+style = "Bold"
