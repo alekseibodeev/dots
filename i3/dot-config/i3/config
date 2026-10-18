@@ -12,8 +12,9 @@ hide_edge_borders smart
 workspace_auto_back_and_forth yes
 
 # set desktop wallpaper
-exec_always --no-startup-id magick -size 1x1 xc:"$(xrdb -get background)" png:- | feh --bg-tile -
+# exec_always --no-startup-id magick -size 1x1 xc:"$(xrdb -get background)" png:- | feh --bg-tile -
 # exec_always --no-startup-id feh --bg-fill ~/.config/wallpapers/selenized-pacman.png
+# exec_always --no-startup-id feh --bg-fill "$HOME/wallpapers/$(cat $HOME/.config/themes/current/wallpaper)"
 
 # start compositor
 exec --no-startup-id picom -b
@@ -158,22 +159,22 @@ mode "launcher" {
 }
 
 # Load color palette from .Xresources
-set_from_resource $base00 i3wm.basex0 #000000
-set_from_resource $base01 i3wm.basex1 #800000
-set_from_resource $base02 i3wm.basex2 #008000
-set_from_resource $base03 i3wm.basex3 #808000
-set_from_resource $base04 i3wm.basex4 #000080
-set_from_resource $base05 i3wm.basex5 #800080
-set_from_resource $base06 i3wm.basex6 #008080
-set_from_resource $base07 i3wm.basex7 #c0c0c0
-set_from_resource $base08 i3wm.basex8 #808080
-set_from_resource $base09 i3wm.basex9 #ff0000
-set_from_resource $base0A i3wm.basexa #00ff00
-set_from_resource $base0B i3wm.basexb #ffff00
-set_from_resource $base0C i3wm.basexc #0000ff
-set_from_resource $base0D i3wm.basexd #ff00ff
-set_from_resource $base0E i3wm.basexe #00ffff
-set_from_resource $base0F i3wm.basexf #ffffff
+set_from_resource $base00 i3wm.color.base00 #000000
+set_from_resource $base01 i3wm.color.base01 #800000
+set_from_resource $base02 i3wm.color.base02 #008000
+set_from_resource $base03 i3wm.color.base03 #808000
+set_from_resource $base04 i3wm.color.base04 #000080
+set_from_resource $base05 i3wm.color.base05 #800080
+set_from_resource $base06 i3wm.color.base06 #008080
+set_from_resource $base07 i3wm.color.base07 #c0c0c0
+set_from_resource $base08 i3wm.color.base08 #808080
+set_from_resource $base09 i3wm.color.base09 #ff0000
+set_from_resource $base0A i3wm.color.base0A #00ff00
+set_from_resource $base0B i3wm.color.base0B #ffff00
+set_from_resource $base0C i3wm.color.base0C #0000ff
+set_from_resource $base0D i3wm.color.base0D #ff00ff
+set_from_resource $base0E i3wm.color.base0E #00ffff
+set_from_resource $base0F i3wm.color.base0F #ffffff
 
 client.focused          $base05 $base0D $base00 $base0D $base0C
 client.focused_inactive $base01 $base01 $base05 $base03 $base01

@@ -1,0 +1,84 @@
+#!/usr/bin/env bash
+
+shopt -s nullglob
+
+THEMES=("Pacman" "The Death of Socrates" "The Fallen Angel")
+THEMES_DIR="$HOME/.config/themes"
+CURRENT_THEME_DIR="$HOME/.current-theme"
+NVIM_TMP_DIR="/tmp/nvim"
+ALACRITTY_CONFIG_FILE="$HOME/.config/alacritty/alacritty.toml"
+
+usage() {
+    cat << _EOF_
+Usage: $0 [OPTION]
+
+DESCRIPTION:
+    Change system theme on the fly.
+
+OPTIONS:
+    -r, --restore
+        Restore current theme.
+    -h, --help
+        Print this message.
+_EOF_
+}
+
+reload_xresources() {
+    xrdb -merge "$CURRENT_THEME_DIR/Xresources"
+}
+
+reload_i3wm() {
+    i3-msg -q restart
+}
+
+reload_nvim() {
+    for socket in "$NVIM_TMP_DIR"/*.sock; do
+        nvim --server "$socket" --remote-send ":UpdateColorScheme<cr>"
+    done
+}
+
+reload_alacritty() {
+    touch "$ALACRITTY_CONFIG_FILE"
+}
+
+reload_wallpaper() {
+    feh --bg-fill "$HOME/wallpapers/$(cat "$CURRENT_THEME_DIR"/wallpaper)"
+}
+
+apply_current_theme() {
+    reload_xresources
+    reload_i3wm
+    reload_nvim
+    reload_alacritty
+    reload_wallpaper
+}
+
+
+pick_new_current_theme() {
+    theme="$(printf "%s\n" "${THEMES[@]}" | fzf | tr "[:upper:]" "[:lower:]" | tr " " "-")"
+    mkdir -p "$CURRENT_THEME_DIR"
+    cp "$THEMES_DIR/$theme"/* "$CURRENT_THEME_DIR"
+    apply_current_theme
+}
+
+case $# in
+    0 )
+        pick_new_current_theme
+        ;;
+    1 )
+        case $1 in
+            -r | --restore )
+                apply_current_theme
+                ;;
+            -h | --help )
+                usage
+                ;;
+            * )
+                usage
+                exit 1
+        esac
+        ;;
+    * )
+        usage
+        exit 1
+esac

@@ -1,5 +1,5 @@
 [general]
-import = ["~/.config/alacritty/colors.toml"]
+import = ["~/.current-theme/alacritty.toml"]
 
 [font]
 size = 16.00

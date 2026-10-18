@@ -80,9 +80,9 @@ end
 
 local function update_colorscheme()
     local success, content = pcall(vim.fn.readblob,
-        vim.fs.normalize('~/.current_theme'))
-    if success and vim.trim(content) == 'light' then
-        vim.cmd('colorscheme base16-selenized-light')
+        vim.fs.normalize('~/.current-theme/nvim'))
+    if success then
+        vim.cmd('colorscheme ' .. content)
     else
         vim.cmd('colorscheme base16-selenized-dark')
     end
