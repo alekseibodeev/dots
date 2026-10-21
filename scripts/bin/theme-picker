@@ -56,14 +56,14 @@ apply_current_theme() {
 
 pick_current_theme() {
     theme="$(printf "%s\n" "${THEMES[@]}" | fzf | tr "[:upper:] " "[:lower:]-")"
+    [ -z "$theme" ] && exit 1
     mkdir -p "$CURRENT_THEME_DIR"
     cp "$THEMES_DIR/$theme"/* "$CURRENT_THEME_DIR"
 }
 
 case $# in
     0 )
-        pick_current_theme
-        apply_current_theme
+        pick_current_theme && apply_current_theme
         ;;
     1 )
         case $1 in
