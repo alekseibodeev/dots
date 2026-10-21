@@ -7,6 +7,7 @@ THEMES_DIR="$HOME/.config/themes"
 CURRENT_THEME_DIR="$HOME/.current-theme"
 NVIM_TMP_DIR="/tmp/nvim"
 ALACRITTY_CONFIG_FILE="$HOME/.config/alacritty/alacritty.toml"
+WALLS_DIR="$HOME/wallpapers"
 
 usage() {
     cat << _EOF_
@@ -20,6 +21,8 @@ OPTIONS:
         Restore current theme.
     -h, --help
         Print this message.
+    -w, --wall
+        Change current theme wallpaper.
 _EOF_
 }
 
@@ -61,6 +64,33 @@ pick_current_theme() {
     cp "$THEMES_DIR/$theme"/* "$CURRENT_THEME_DIR"
 }
 
+pick_wallpaper() {
+    ub_cleanup() {
+        ueberzugpp cmd -s "$UB_SOCKET" -a exit
+    }
+
+    trap ub_cleanup HUP INT QUIT TERM EXIT
+
+    UB_TMP_DIR=/tmp
+    UB_PID_FILE=$(mktemp)
+
+    ueberzugpp layer --no-stdin --silent --use-escape-codes --pid-file "$UB_PID_FILE"
+
+    UB_PID=$(cat "$UB_PID_FILE")
+    UB_SOCKET="$UB_TMP_DIR"/ueberzugpp-"$UB_PID".socket
+
+    fzf --exit-0 --walker-root="$WALLS_DIR" --reverse --cycle --preview="\
+            ueberzugpp cmd -s $UB_SOCKET \
+                           -i fzfpreview \
+                           -a add \
+                           -x \$FZF_PREVIEW_LEFT \
+                           -y \$FZF_PREVIEW_TOP \
+                           --max-width \$FZF_PREVIEW_COLUMNS \
+                           --max-height \$FZF_PREVIEW_LINES \
+                           -f {}" \
+        | xargs --no-run-if-empty -I {} sh -c "feh --bg-fill {}; basename {} > $CURRENT_THEME_DIR/wallpaper"
+}
+
 case $# in
     0 )
         pick_current_theme && apply_current_theme
@@ -72,6 +102,9 @@ case $# in
                 ;;
             -h | --help )
                 usage
+                ;;
+            -w | --wall )
+                pick_wallpaper
                 ;;
             * )
                 usage
