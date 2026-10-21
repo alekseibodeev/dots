@@ -54,16 +54,16 @@ apply_current_theme() {
 }
 
 
-pick_new_current_theme() {
-    theme="$(printf "%s\n" "${THEMES[@]}" | fzf | tr "[:upper:]" "[:lower:]" | tr " " "-")"
+pick_current_theme() {
+    theme="$(printf "%s\n" "${THEMES[@]}" | fzf | tr "[:upper:] " "[:lower:]-")"
     mkdir -p "$CURRENT_THEME_DIR"
     cp "$THEMES_DIR/$theme"/* "$CURRENT_THEME_DIR"
-    apply_current_theme
 }
 
 case $# in
     0 )
-        pick_new_current_theme
+        pick_current_theme
+        apply_current_theme
         ;;
     1 )
         case $1 in
