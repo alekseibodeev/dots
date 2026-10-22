@@ -11,7 +11,7 @@ WALLS_DIR="$HOME/wallpapers"
 
 usage() {
     cat << _EOF_
-Usage: $0 [OPTION]
+Usage: ${0##*/} [OPTION]
 
 DESCRIPTION:
     Change system theme on the fly.
