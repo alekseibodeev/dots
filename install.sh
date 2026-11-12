@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-PACKAGES=(alacritty bash i3 nvim picom polybar rofi scripts tmux x)
+PACKAGES=(alacritty bash i3 nvim picom polybar rofi scripts themes tmux x)
 TARGET="$HOME"
 WALLPAPERS_TARGET="$HOME/wallpapers"
 
