@@ -2,7 +2,7 @@
 
 shopt -s nullglob
 
-THEMES=("Pacman" "The Death of Socrates" "The Fallen Angel")
+THEMES=("Forest" "Pacman" "Rose Pine" "The Death of Socrates" "The Fallen Angel")
 THEMES_DIR="$HOME/.config/themes"
 CURRENT_THEME_DIR="$HOME/.current-theme"
 NVIM_TMP_DIR="/tmp/nvim"

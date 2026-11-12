@@ -1,0 +1,26 @@
+!! polybar
+polybar.color.background: #191724
+polybar.color.foreground: #e0def4
+polybar.color.primary:    #c4a7e7
+polybar.color.success:    #31748f
+polybar.color.warning:    #ebbcba
+polybar.color.danger:     #eb6f92
+polybar.color.disabled:   #6e6a86
+
+!! i3wm
+i3wm.color.base00:        #191724
+i3wm.color.base01:        #1f1d2e
+i3wm.color.base02:        #26233a
+i3wm.color.base03:        #6e6a86
+i3wm.color.base04:        #908caa
+i3wm.color.base05:        #e0def4
+i3wm.color.base06:        #e0def4
+i3wm.color.base07:        #524f67
+i3wm.color.base08:        #eb6f92
+i3wm.color.base09:        #f6c177
+i3wm.color.base0A:        #ebbcba
+i3wm.color.base0B:        #31748f
+i3wm.color.base0C:        #9ccfd8
+i3wm.color.base0D:        #c4a7e7
+i3wm.color.base0E:        #f6c177
+i3wm.color.base0F:        #524f67
